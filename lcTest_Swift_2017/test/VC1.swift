@@ -146,6 +146,32 @@ class VC1: UIViewController {
         }
         // for (var i=0; i<10; i++)  // 这种写法弃用了
         
+        var kCondition: String?
+        //var kCondition: String? = " if | if let | guard "
+        // 常规
+        if kCondition == nil {
+            print("1.异常处理")
+        }
+        else {
+            print("ok , \(kCondition!)")
+        }
+        // if let
+        if let v0 = kCondition {
+            print("if let -> ok , \(kCondition!), \(v0)")
+        }
+        else {
+            print("2.异常处理")
+        }
+        // guard
+        //guard kCondition != nil else {
+        guard let v1 = kCondition else {
+            print("3.异常处理")
+            return
+        }
+        //print("guard ok , \(kCondition!)")
+        print("guard ok , \(kCondition!) , \(v1)")
+        print("go on")  // guard return 致使后面都不执行
+        
         var arrInt = [Int]();  // 空数组  .isEmpty==true
         var arrInt1 = [Int](repeating: 10, count: 3);  // [10, 10, 10]
         var arrInt2 = [10, 20];
