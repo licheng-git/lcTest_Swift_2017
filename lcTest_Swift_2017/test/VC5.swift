@@ -124,11 +124,17 @@ class VC5: UIViewController {
 //        self.pClosures = {
 //            print("<p>\(self.pStr)</p>")
 //        }  // err VC5.deinit不执行
-        self.pClosures = {
-            [weak self] in
-            print("<p>\(self!.pStr)</p>")
-            //[unowned self] in
-            //print("<p>\(self.pStr)</p>")
+        //self.pClosures = { [unowned self] in  // *_*
+        //    print("<p>\(self.pStr)</p>")
+        //}
+        self.pClosures = { [weak self] in
+            //print("<p>\(self?.pStr)</p>")  
+            //guard let strongSelf = self else { return }
+            //print("<p>\(strongSelf.pStr)</p>")    
+            if self == nil {
+                return
+            }
+            print("<p>\(self!.pStr)</p>")              
         }
         self.pClosures!()
     }
